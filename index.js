@@ -4,25 +4,37 @@ const clearBtn = document.querySelector('.clear-btn');
 const popup = document.querySelector('.popup');
 const popupText = popup.querySelector('.popup__text');
 const popupCloseBtn = popup.querySelector('.popup__close-btn');
+const counter = document.querySelector('.counter');
+const counterX = counter.querySelector('.counter__x-score');
+const counterZero = counter.querySelector('.counter__zero-score');
 
 let step = 0;
+let zero = 0;
+let x = 0;
 
 function popupOpen(winner) {
+
   if (winner == 'x') {
-    popupText.textContent = 'Cross - win!'
+    popupText.textContent = 'Cross - win!';
+    x++;
+    counterX.textContent = x;
   } else if (winner == '0') {
     popupText.textContent = 'Null - win!'
+    zero++;
+    counterZero.textContent = zero;
   } else {
     popupText.textContent = 'Nobody - win!'
   }
   popup.classList.add('popup_opened');
   popupCloseBtn.addEventListener('click', popupClose);
+  clearBtn.disabled = true
 }
 
 function popupClose(){
   popup.classList.remove('popup_opened');
   clearField();
   popupCloseBtn.removeEventListener('click', popupClose);
+  clearBtn.disabled = false
 }
 
 function hasClearField() {

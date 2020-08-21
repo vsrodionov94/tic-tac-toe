@@ -1,7 +1,7 @@
 .page {
   max-width: 1000px;
   min-width: 300px;
-  padding-top: 20px;
+  padding-top: 10px;
   font-family: 'Courier New', Courier, monospace;
   margin: auto;
   justify-content: center;
@@ -20,6 +20,7 @@
   display: grid;
   grid-template-columns: repeat(3, 200px);
   grid-template-rows: repeat(3, 200px);
+  border: 2px solid #000;
 }
 
 .battle-field__item {
@@ -29,20 +30,34 @@
   font-size: 200px;
   line-height: 1em;
   text-align: center;
+  cursor: pointer;
 }
 
 .clear-btn {
+  cursor: pointer;
   border: 2px solid #000;
   background-color: #ffee44;
   border-radius: 5px;
   width: 200px;
   height: 40px;
   font-size: 30px;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.clear-btn:disabled {
+  display: none;
+}
+
+.counter {
+  font-weight: 700;
+  font-size: 20px;
+  margin: 10px 0 0;
 }
 
 .popup {
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -52,10 +67,12 @@
   border-radius: 15px;
   position: absolute;
   margin: auto;
+  transition: visibility .3s, opacity .3s linear;
 }
 
 .popup_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .popup__close-btn {
