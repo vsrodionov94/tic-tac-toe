@@ -27,14 +27,14 @@ function popupOpen(winner) {
   }
   popup.classList.add('popup_opened');
   popupCloseBtn.addEventListener('click', popupClose);
-  clearBtn.disabled = true
+  clearBtn.disabled = true;
 }
 
 function popupClose(){
   popup.classList.remove('popup_opened');
   clearField();
   popupCloseBtn.removeEventListener('click', popupClose);
-  clearBtn.disabled = false
+  clearBtn.disabled = false;
 }
 
 function hasClearField() {
@@ -43,7 +43,7 @@ function hasClearField() {
     if (item.textContent == '') {
       i++
     }
-  })
+  });
   if (i == 0) {
     return true
   } else {
@@ -51,27 +51,39 @@ function hasClearField() {
   }
 }
 
+function hasWin(el) {
+  if ((battleFieldItems[0].textContent== el
+  && battleFieldItems[1].textContent== el
+  && battleFieldItems[2].textContent== el)
+  || (battleFieldItems[3].textContent== el
+  && battleFieldItems[4].textContent== el
+  && battleFieldItems[5].textContent== el)
+  || (battleFieldItems[6].textContent== el
+  && battleFieldItems[7].textContent== el
+  && battleFieldItems[8].textContent== el)
+  || (battleFieldItems[0].textContent== el
+  && battleFieldItems[3].textContent == el
+  && battleFieldItems[6].textContent == el)
+  || (battleFieldItems[1].textContent== el
+  && battleFieldItems[4].textContent == el
+  && battleFieldItems[7].textContent == el)
+  || (battleFieldItems[2].textContent== el
+  && battleFieldItems[5].textContent == el
+  && battleFieldItems[8].textContent == el)
+  || (battleFieldItems[0].textContent== el
+  && battleFieldItems[4].textContent == el
+  && battleFieldItems[8].textContent == el)
+  || (battleFieldItems[2].textContent == el
+  && battleFieldItems[4].textContent == el
+  && battleFieldItems[6].textContent == el)) popupOpen(el);
+}
+
+
 function checkWinner(){
   // проверяем пустые поля и объявляем ничью
   if (hasClearField()) popupOpen();
-  // проверяем победу крестиков
-  if (battleFieldItems[0].textContent=='x' && battleFieldItems[1].textContent=='x' && battleFieldItems[2].textContent=='x') popupOpen('x');
-	if (battleFieldItems[3].textContent=='x' && battleFieldItems[4].textContent=='x' && battleFieldItems[5].textContent=='x') popupOpen('x');
-	if (battleFieldItems[6].textContent=='x' && battleFieldItems[7].textContent=='x' && battleFieldItems[8].textContent=='x') popupOpen('x');
-	if (battleFieldItems[0].textContent=='x' && battleFieldItems[3].textContent=='x' && battleFieldItems[6].textContent=='x') popupOpen('x');
-	if (battleFieldItems[1].textContent=='x' && battleFieldItems[4].textContent=='x' && battleFieldItems[7].textContent=='x') popupOpen('x');
-	if (battleFieldItems[2].textContent=='x' && battleFieldItems[5].textContent=='x' && battleFieldItems[8].textContent=='x') popupOpen('x');
-	if (battleFieldItems[0].textContent=='x' && battleFieldItems[4].textContent=='x' && battleFieldItems[8].textContent=='x') popupOpen('x');
-	if (battleFieldItems[2].textContent=='x' && battleFieldItems[4].textContent=='x' && battleFieldItems[6].textContent=='x') popupOpen('x');
-  // проверяем победу ноликов
-	if (battleFieldItems[0].textContent=='0' && battleFieldItems[1].textContent=='0' && battleFieldItems[2].textContent=='0') popupOpen('0');
-	if (battleFieldItems[3].textContent=='0' && battleFieldItems[4].textContent=='0' && battleFieldItems[5].textContent=='0') popupOpen('0');
-	if (battleFieldItems[6].textContent=='0' && battleFieldItems[7].textContent=='0' && battleFieldItems[8].textContent=='0') popupOpen('0');
-	if (battleFieldItems[0].textContent=='0' && battleFieldItems[3].textContent=='0' && battleFieldItems[6].textContent=='0') popupOpen('0');
-	if (battleFieldItems[1].textContent=='0' && battleFieldItems[4].textContent=='0' && battleFieldItems[7].textContent=='0') popupOpen('0');
-	if (battleFieldItems[2].textContent=='0' && battleFieldItems[5].textContent=='0' && battleFieldItems[8].textContent=='0') popupOpen('0');
-	if (battleFieldItems[0].textContent=='0' && battleFieldItems[4].textContent=='0' && battleFieldItems[8].textContent=='0') popupOpen('0');
-	if (battleFieldItems[2].textContent=='0' && battleFieldItems[4].textContent=='0' && battleFieldItems[6].textContent=='0') popupOpen('0');
+  hasWin('x');
+  hasWin('0');
 }
 
 function clearField() {
