@@ -77,4 +77,7 @@
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
   }
+  .battle-field__item {
+    font-size: 100px;
+  }
 }
